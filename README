@@ -1,0 +1,29 @@
+rsvpd.sh <marlon@rightshift.biz> - Rightshift
+Licensed under The MIT License (MIT) - http://opensource.org/licenses/MIT
+Copyright (c) 2013 RightShift
+
+About:
+======
+
+rsvpd is a simple daemonised ping script, created by RightShift, as part of a solution to graph and research possible
+issues between nodes. It reads servers to monitor from a server list file, and continuously logs the output of the
+pings (min, max, avg, packetloss) to a statsd server.
+
+For simplicity, we have combined several scripts (originally our 'bin' and init.d) into a single rsvpd.sh.
+
+Notes On Usage:
+===============
+
+Make sure that wherever rsvpd.sh lives, a link to it exists in /etc/init.d/ and that the path to the serverlist (SERVERLIST) is valid and readable.
+
+Secondly, fill the SERVERLIST file with a list of hosts you wish to monitor.
+Lastly, edit STATSDHOST to refer to your statsd instance.
+The script can then be started and stopped like any other service.
+
+COPYING
+=======
+We appreciate the efforts of the opensource community, and as such, take pleasure into giving back.
+Some parts of this script was taken from Apokalyptik's GPL'd daemon-functions.sh (GPLv3), and the remainder is ours.
+It is licensed under The MIT License, which is included in this repository in the file license.txt
+
+
