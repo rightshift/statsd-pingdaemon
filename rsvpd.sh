@@ -23,8 +23,9 @@ MY_ERRFILE="$VAR_LOG/$MY_NAME.err"
 MY_LOGFILE="$VAR_LOG/$MY_NAME.log"
 MY_WAITFILE="$VAR_RUN/$MY_NAME.wait"
 MY_BLOCKFILE="$VAR_RUN/$MY_NAME.block"
-STATSDHOST="statsd.rightshift.biz"
 SERVERLIST="/etc/rsvp_servers.conf"
+# Your statsd host - must not be empty
+STATSDHOST=""
 
 pingAndLogSingleHost() {
     # ping params. Count, Interval and Wait, as per 'man ping'
