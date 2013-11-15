@@ -14,7 +14,7 @@
 MY_PID=$$
 MY_PATH=$(readlink -f $0)
 MY_ROOT=$(dirname $MY_PATH)
-MY_NAME=$(basename $MY_PATH)
+MY_NAME=$(basename $0)
 VAR_RUN="/var/run"
 VAR_LOG="/var/log" # the default place to log
 MY_PIDFILE="$VAR_RUN/$MY_NAME.pid"
