@@ -194,13 +194,13 @@ case $1 in
 		;;
 	stop)
 		echo -n "Terminating daemon... "
-		$0 stat 1>/dev/null 2>/dev/null
+		$0 status 1>/dev/null 2>/dev/null
 		if [ $? -ne 0 ]; then
 			echo "process is not running"
 			exit 0
 		fi
 		touch $MY_KILLFILE
-		$0 stat 1>/dev/null 2>/dev/null
+		$0 status 1>/dev/null 2>/dev/null
 		ECODE=$?
 		waitcount=0
 		if [ "$waitcountmax" = "" ]; then waitcountmax=30; fi
@@ -208,13 +208,13 @@ case $1 in
 			sleep 1
 			let waitcount=$waitcount+1
 			if [ $waitcount -lt $waitcountmax ]; then
-				$0 stat 1>/dev/null 2>/dev/null
+				$0 status 1>/dev/null 2>/dev/null
 				ECODE=$?
 			else
 				ECODE=1
 			fi
 		done
-		$0 stat 1>/dev/null 2>/dev/null
+		$0 status 1>/dev/null 2>/dev/null
 		if [ $? -eq 0 ]; then
 			PID=$(cat $MY_PIDFILE)
 			kill $PID
@@ -227,7 +227,7 @@ case $1 in
 			echo "Process exited gracefully"
 		fi
 		;;
-	stat)
+	status)
 		if [ -f $MY_BLOCKFILE ]; then
 			echo "Daemon execution disabled"
 		fi
@@ -271,7 +271,7 @@ case $1 in
         pingAll
 		;;
 	help|?|--help|-h)
-		echo "Usage: $0 [ start | stop | restart | stat | pause | resume | disable | enable | (log|stdout) | (err|stderr) ]"
+		echo "Usage: $0 [ start | stop | restart | status | pause | resume | disable | enable | (log|stdout) | (err|stderr) ]"
 		exit 0
 		;;
 	*)
