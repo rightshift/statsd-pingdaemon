@@ -77,7 +77,7 @@ function pingAndLogSingleHost() {
 	timenow=$(date "$logDateFormat")
 
 	sanePingOutput=$(ping -q -w $pingWait -i $pingInterval -c $pingCount $host | tail -n3 | sed 's/ping//' | sed 's/rtt //' | sed 's/--- /HOST /' | sed 's/ ---//' | tr "\\n" ",")
-	echo "$timenow ::: $sanePingOutput"	# logging line, remove this if not needed
+	# echo "$timenow ::: $sanePingOutput"	# logging line, remove this if not needed
 
 	packetLoss=$(echo $sanePingOutput | grep -oP '\d+(?=% packet loss)')
 	timeSlice=$(echo $sanePingOutput | cut -d '=' -f 2)
@@ -102,7 +102,6 @@ function pingAndLogSingleHost() {
 function pingAll() {
     loadConfigsAndHosts # load the configs and hosts before we start to run
 
-    echo $(date)" | INFO  | about to ping Hosts='${HOSTARRAY[@]}'" >> $MY_ERRFILE
     while [ true ];
     do
         checkforterm
